@@ -1,5 +1,5 @@
 import 'package:albus/dominio/dto/dto_student.dart';
-import 'package:albus/dominio/interface/dao_student.dart';
+import 'package:albus/dominio/interface/i_dao_student.dart';
 import 'package:albus/dominio/email.dart' as valid_mail;
 import 'package:albus/dominio/password.dart' as valid_pass;
 import 'package:albus/dominio/phone.dart' as valid_phone;

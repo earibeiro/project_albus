@@ -1,5 +1,6 @@
 import 'package:albus/dominio/dto/dto_teacher.dart';
 
 abstract class IDAOTeacher {
-  DTOTeacher save(DTOTeacher dto);
+  Future<DTOTeacher> save(DTOTeacher dto);
+  Future<void> remove(DTOTeacher dto);
 }
