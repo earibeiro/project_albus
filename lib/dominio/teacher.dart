@@ -1,6 +1,6 @@
 import 'package:albus/dominio/dto/dto_teacher.dart';
-import 'package:albus/dominio/interface/dao_teacher.dart';
-
+import 'package:albus/dominio/interface/i_dao_teacher.dart';
+import 'package:albus/dominio/cpf.dart' as validator;
 
 class Teacher {
   late dynamic id;
@@ -12,11 +12,9 @@ class Teacher {
   late String? photo;
 
   late DTOTeacher dto;
-
   late IDAOTeacher dao;
 
-
-  Teacher({required this.dto, required this.dao}){
+  Teacher({required this.dto, required this.dao}) {
     id = dto.id;
     name = dto.name;
     description = dto.description;
@@ -24,7 +22,28 @@ class Teacher {
     email = dto.email;
     phone = dto.phone;
     photo = dto.photo;
+    dto = DTOTeacher(id: id, name: name, description: description, cpf: cpf, email: email, phone: phone, photo: photo);
+
+    validator.CPF(cpf);
+    _validateName();
+    _validateEmail();
   }
 
+  void _validateName() {
+    if (name.isEmpty) throw Exception('Name cannot be empty!');
+  }
 
+  void _validateEmail() {
+    if (email.isEmpty) throw Exception('Email cannot be empty!');
+
+  }
+
+  Future<DTOTeacher> add() async {
+    return await dao.save(dto);
+  }
+
+  bool delete(DTOTeacher dto) {
+    dao.remove(dto);
+    return true;
+  }
 }
