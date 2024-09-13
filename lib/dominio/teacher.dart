@@ -6,44 +6,46 @@ class Teacher {
   late dynamic id;
   late String name;
   late String? description;
+  late String cpf;
   late String email;
   late String? phone;
-  late String cpf;
   late String? photo;
 
   late DTOTeacher dto;
   late IDAOTeacher dao;
 
-  Teacher({required this.dto, required this.dao}) {
-    id = dto.id;
-    name = dto.name;
-    description = dto.description;
-    cpf = dto.cpf;
-    email = dto.email;
-    phone = dto.phone;
-    photo = dto.photo;
-    dto = DTOTeacher(id: id, name: name, description: description, cpf: cpf, email: email, phone: phone, photo: photo);
+  Teacher({
+    required DTOTeacher dto,
+    required this.dao,
+  }) {
+    this.id = dto.id;
+    this.name = dto.name;
+    this.description = dto.description;
+    this.cpf = dto.cpf;
+    this.email = dto.email;
+    this.phone = dto.phone;
+    this.photo = dto.photo;
 
     validator.CPF(cpf);
-    _validateName();
-    _validateEmail();
+    validateName();
+    validateEmail();
+    this.dto = dto; // Inicializando o campo dto corretamente
   }
 
-  void _validateName() {
+  void validateName() {
     if (name.isEmpty) throw Exception('Name cannot be empty!');
   }
 
-  void _validateEmail() {
+  void validateEmail() {
     if (email.isEmpty) throw Exception('Email cannot be empty!');
-
+    // Add more email validation logic if needed
   }
 
   Future<DTOTeacher> add() async {
     return await dao.save(dto);
   }
 
-  bool delete(DTOTeacher dto) {
-    dao.remove(dto);
-    return true;
+  Future<void> remove() async {
+    await dao.remove(dto);
   }
 }

@@ -1,17 +1,17 @@
-import 'package:albus/dominio/interface/dao_teacher.dart';
-import 'package:albus/domain/dto/dto_teacher.dart';
+import 'package:albus/dominio/interface/i_dao_teacher.dart';
+import 'package:albus/dominio/dto/dto_teacher.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:albus/database/sqlite/connection.dart';
+import 'package:albus/app/database/sqlite/connection.dart';
 
 class DaoTeacher implements IDAOTeacher {
+  late Database _db;
   @override
   Future<DTOTeacher> save(DTOTeacher dto) async {
-    final db = await Connection.open();
-    if (dto.id == null) {
-      dto.id = await db.insert('teacher', dto.toMap());
-    } else {
-      await db.update('teacher', dto.toMap(), where: 'id = ?', whereArgs: [dto.id]);
-    }
+    _db = await Connection.open();
+    int id = await _db.rawInsert(
+      '''INSERT INTO teacher(name, description, email, phone, cpf, photo) 
+      VALUES (?, ?, ?, ?, ?, ?)''', [dto.name, dto.description, dto.email, dto.phone, dto.cpf, dto.photo]);
+    dto.id = id;
     return dto;
   }
 
@@ -21,3 +21,7 @@ class DaoTeacher implements IDAOTeacher {
     await db.delete('teacher', where: 'id = ?', whereArgs: [dto.id]);
   }
 }
+
+
+
+

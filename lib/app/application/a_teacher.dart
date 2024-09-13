@@ -8,16 +8,7 @@ class ATeacher {
   IDAOTeacher dao = DaoTeacher();
 
   ATeacher({required DTOTeacher dto}) {
-    teacher = Teacher(
-      id: dto.id,
-      name: dto.name,
-      description: dto.description,
-      cpf: dto.cpf,
-      email: dto.email,
-      phone: dto.phone,
-      photo: dto.photo,
-      dao: dao,
-    );
+    teacher = Teacher(dto: dto, dao: dao);
   }
 
   Future<void> save() async {
