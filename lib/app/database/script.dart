@@ -1,20 +1,22 @@
-final List<String> createTables = [
+const List<String> createTables = [
   '''
   CREATE TABLE teacher (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
-    description TEXT,
-    cpf TEXT NOT NULL,
     email TEXT NOT NULL,
-    phone TEXT,
-    photo TEXT
+    cpf TEXT NOT NULL
   )
-  ''',
+  '''
 ];
 
-final List<String> insertRecords = [
+const List<String> insertRecords = [
   '''
-  INSERT INTO teacher (name, description, cpf, email, phone, photo) VALUES
-  ('John Doe', 'Math Teacher', '12345678909', 'john.doe@example.com', '1234567890', 'photo_url')
+  INSERT INTO teacher (id, name, email, cpf) VALUES (1, 'Professor A', 'professorA@example.com', '12345678901')
   ''',
+  '''
+  INSERT INTO teacher (id, name, email, cpf) VALUES (2, 'Professor B', 'professorB@example.com', '12345678902')
+  ''',
+  '''
+  INSERT INTO teacher (id, name, email, cpf) VALUES (3, 'Professor C', 'professorC@example.com', '12345678903')
+  '''
 ];
