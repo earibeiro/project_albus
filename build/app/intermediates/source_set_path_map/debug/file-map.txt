@@ -1,0 +1,13 @@
+br.com.eduardo.albus.app-core-1.6.0-0 C:\Users\ribei\.gradle\caches\transforms-3\284a410c767ad6c7a2b0ffc8d8d85981\transformed\core-1.6.0\res
+br.com.eduardo.albus.app-jetified-window-java-1.0.0-beta04-1 C:\Users\ribei\.gradle\caches\transforms-3\2a215381204751055df81b6269e717b7\transformed\jetified-window-java-1.0.0-beta04\res
+br.com.eduardo.albus.app-jetified-annotation-experimental-1.1.0-2 C:\Users\ribei\.gradle\caches\transforms-3\3d2f03fc996c2e0aa3dee5cfa3002cd1\transformed\jetified-annotation-experimental-1.1.0\res
+br.com.eduardo.albus.app-jetified-window-1.0.0-beta04-3 C:\Users\ribei\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
+br.com.eduardo.albus.app-debug-4 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\debug\res
+br.com.eduardo.albus.app-main-5 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\main\res
+br.com.eduardo.albus.app-pngs-6 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\pngs\debug
+br.com.eduardo.albus.app-resValues-7 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\resValues\debug
+br.com.eduardo.albus.app-rs-8 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\rs\debug
+br.com.eduardo.albus.app-mergeDebugResources-9 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+br.com.eduardo.albus.app-mergeDebugResources-10 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+br.com.eduardo.albus.app-merged_res-11 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\merged_res\debug
+br.com.eduardo.albus.app-packaged_res-12 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\sqflite\intermediates\packaged_res\debug
