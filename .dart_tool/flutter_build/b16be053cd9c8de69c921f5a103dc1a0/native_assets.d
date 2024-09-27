@@ -1,0 +1,1 @@
+ D:\\01_Documentos\\02_Faculdade\\03_3oAno\\Projeto\ DDM\ 2o\ Trimestre\\albus\\.dart_tool\\flutter_build\\b16be053cd9c8de69c921f5a103dc1a0\\native_assets.yaml: 
