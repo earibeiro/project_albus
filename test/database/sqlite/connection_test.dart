@@ -11,30 +11,25 @@ void main() {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
     db = await Connection.open();
-  });
 
-  group('Testes de conexão', () {
-    test('apagar tabela teacher se existir', () async {
-      try {
-        await db.execute('DROP TABLE IF EXISTS teacher');
-      } catch (e) {
-        throw Exception('Erro ao tentar apagar a tabela teacher: $e');
-      }
-    });
-
-    test('recriar tabela teacher', () async {
-      try {
+    // Verificar se a tabela existe e criar se não existir
+    try {
+      var result = await db.rawQuery(
+          "SELECT name FROM sqlite_master WHERE type='table' AND name='teacher'");
+      if (result.isEmpty) {
         for (var script in createTables) {
           await db.execute(script);
         }
         for (var script in insertRecords) {
           await db.execute(script);
         }
-      } catch (e) {
-        throw Exception('Erro ao tentar recriar a tabela teacher: $e');
       }
-    });
+    } catch (e) {
+      throw Exception('Erro ao tentar verificar ou criar a tabela teacher: $e');
+    }
+  });
 
+  group('Testes de conexão', () {
     test('teste script create table', () async {
       var list = await db.rawQuery('SELECT * FROM teacher');
       expect(list.length, 3);
