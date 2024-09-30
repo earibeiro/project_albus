@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:albus/app/database/sqlite/connection.dart';
 import 'package:albus/app/database/script.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:sqflite/sqflite.dart';
 
 void main() {
   late Database db;

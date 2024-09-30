@@ -15,6 +15,8 @@ class SupabaseConnection {
     return _client;
   }
 
+  static SupabaseClient get client => _client;
+
   static Future<void> insertData(String table, Map<String, dynamic> data) async {
     final client = await open();
     final response = await client.from(table).insert(data).execute();
@@ -30,5 +32,14 @@ class SupabaseConnection {
       throw Exception('Failed to retrieve data: ${response.error!.message}');
     }
     return response.data;
+  }
+
+  static Future<void> testConnection() async {
+    final client = await open();
+    final response = await client.from('teacher').select().execute();
+    if (response.error != null) {
+      throw Exception('Failed to connect: ${response.error!.message}');
+    }
+    print('Connection successful: ${response.data}');
   }
 }
