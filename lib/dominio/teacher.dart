@@ -29,7 +29,7 @@ class Teacher {
     validator.CPF(cpf);
     validateName();
     validateEmail();
-    this.dto = dto; // Inicializando o campo dto corretamente
+    this.dto = dto;
   }
 
   void validateName() {
@@ -38,7 +38,13 @@ class Teacher {
 
   void validateEmail() {
     if (email.isEmpty) throw Exception('Email cannot be empty!');
-    // Add more email validation logic if needed
+  }
+
+  void _isValidEmail() {
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+    if (!emailRegex.hasMatch(email)) {
+      throw Exception('Invalid email');
+    }
   }
 
   Future<DTOTeacher> add() async {
