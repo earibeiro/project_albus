@@ -25,4 +25,13 @@ class Student {
     valid_phone.Phone(phone);
   }
 
+  Future<void> add() async {
+    dto = await dao.save(dto);
+  }
+
+  Future<void> remove() async {
+    await dao.remove(dto);
+  }
+  
+
 }

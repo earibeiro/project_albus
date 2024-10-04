@@ -1,13 +1,24 @@
-br.com.eduardo.albus.app-core-1.6.0-0 C:\Users\ribei\.gradle\caches\transforms-3\284a410c767ad6c7a2b0ffc8d8d85981\transformed\core-1.6.0\res
+br.com.eduardo.albus.app-core-runtime-2.2.0-0 C:\Users\ribei\.gradle\caches\transforms-3\0f877a570394a12cc35ff27489f11c26\transformed\core-runtime-2.2.0\res
 br.com.eduardo.albus.app-jetified-window-java-1.0.0-beta04-1 C:\Users\ribei\.gradle\caches\transforms-3\2a215381204751055df81b6269e717b7\transformed\jetified-window-java-1.0.0-beta04\res
-br.com.eduardo.albus.app-jetified-annotation-experimental-1.1.0-2 C:\Users\ribei\.gradle\caches\transforms-3\3d2f03fc996c2e0aa3dee5cfa3002cd1\transformed\jetified-annotation-experimental-1.1.0\res
-br.com.eduardo.albus.app-jetified-window-1.0.0-beta04-3 C:\Users\ribei\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
-br.com.eduardo.albus.app-debug-4 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\debug\res
-br.com.eduardo.albus.app-main-5 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\main\res
-br.com.eduardo.albus.app-pngs-6 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\pngs\debug
-br.com.eduardo.albus.app-resValues-7 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\resValues\debug
-br.com.eduardo.albus.app-rs-8 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\rs\debug
-br.com.eduardo.albus.app-mergeDebugResources-9 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
-br.com.eduardo.albus.app-mergeDebugResources-10 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-br.com.eduardo.albus.app-merged_res-11 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\merged_res\debug
-br.com.eduardo.albus.app-packaged_res-12 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\sqflite\intermediates\packaged_res\debug
+br.com.eduardo.albus.app-core-1.13.1-2 C:\Users\ribei\.gradle\caches\transforms-3\2f6a5506f4dac22f7ab67b13b215ea43\transformed\core-1.13.1\res
+br.com.eduardo.albus.app-lifecycle-livedata-2.6.2-3 C:\Users\ribei\.gradle\caches\transforms-3\4ac619b9deba4a1fa8987b5cd7ce3b2f\transformed\lifecycle-livedata-2.6.2\res
+br.com.eduardo.albus.app-jetified-startup-runtime-1.1.1-4 C:\Users\ribei\.gradle\caches\transforms-3\69635902d600ff315c2d2b7f75af662f\transformed\jetified-startup-runtime-1.1.1\res
+br.com.eduardo.albus.app-lifecycle-livedata-core-2.6.2-5 C:\Users\ribei\.gradle\caches\transforms-3\6aee316721cde10eee602b1ec4b1a4a6\transformed\lifecycle-livedata-core-2.6.2\res
+br.com.eduardo.albus.app-lifecycle-runtime-2.6.2-6 C:\Users\ribei\.gradle\caches\transforms-3\7628447021ddaf60af1b9170edc954e9\transformed\lifecycle-runtime-2.6.2\res
+br.com.eduardo.albus.app-jetified-profileinstaller-1.3.0-7 C:\Users\ribei\.gradle\caches\transforms-3\77b04ab641bc809f6845dd10c6b5dd1f\transformed\jetified-profileinstaller-1.3.0\res
+br.com.eduardo.albus.app-browser-1.8.0-8 C:\Users\ribei\.gradle\caches\transforms-3\8bb96117b0f09282d9100503ae2b9eab\transformed\browser-1.8.0\res
+br.com.eduardo.albus.app-lifecycle-viewmodel-2.6.2-9 C:\Users\ribei\.gradle\caches\transforms-3\b44e82f04ca2fbbb378f070b4fb3afd1\transformed\lifecycle-viewmodel-2.6.2\res
+br.com.eduardo.albus.app-jetified-annotation-experimental-1.4.0-10 C:\Users\ribei\.gradle\caches\transforms-3\bd9b8afb5ccab932cf8ed25b1b7c2f57\transformed\jetified-annotation-experimental-1.4.0\res
+br.com.eduardo.albus.app-jetified-window-1.0.0-beta04-11 C:\Users\ribei\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
+br.com.eduardo.albus.app-debug-12 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\debug\res
+br.com.eduardo.albus.app-main-13 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\android\app\src\main\res
+br.com.eduardo.albus.app-pngs-14 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\pngs\debug
+br.com.eduardo.albus.app-resValues-15 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\resValues\debug
+br.com.eduardo.albus.app-rs-16 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\generated\res\rs\debug
+br.com.eduardo.albus.app-mergeDebugResources-17 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+br.com.eduardo.albus.app-mergeDebugResources-18 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+br.com.eduardo.albus.app-merged_res-19 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\app\intermediates\merged_res\debug
+br.com.eduardo.albus.app-packaged_res-20 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\path_provider_android\intermediates\packaged_res\debug
+br.com.eduardo.albus.app-packaged_res-21 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\sqflite\intermediates\packaged_res\debug
+br.com.eduardo.albus.app-packaged_res-22 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\uni_links\intermediates\packaged_res\debug
+br.com.eduardo.albus.app-packaged_res-23 D:\01_Documentos\02_Faculdade\03_3oAno\Projeto DDM 2o Trimestre\albus\build\url_launcher_android\intermediates\packaged_res\debug

@@ -5,8 +5,10 @@ class Phone {
     if (number.isEmpty) {
       throw ArgumentError('O telefone não pode estar vazio.');
     }
-    if (!RegExp(r'^\d{10,11}$').hasMatch(number)) {
-      throw ArgumentError('O telefone deve conter apenas números e ter 10 ou 11 dígitos.');
-    }
+  }
+
+  bool _isValidPassword () {
+    final passRegex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+    return passRegex.hasMatch(number);
   }
 }
