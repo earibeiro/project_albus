@@ -1,8 +1,13 @@
 import 'package:albus/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:albus/app/widget/teachers.dart';
+import 'package:albus/app/widget/selectionscreen.dart';
+import 'package:albus/app/widget/studentsoptions.dart';
+import 'package:albus/app/widget/students.dart';
+import 'package:albus/app/widget/formstudents.dart';
+import 'package:albus/app/widget/teachersoptions.dart';
 import 'package:albus/app/widget/formteacher.dart';
 import 'package:albus/app/widget/descriptionteacher.dart';  
+import 'package:albus/app/widget/teachers.dart';
 
 class MyApp extends StatelessWidget{
   const MyApp({Key? key}) : super(key: key);
@@ -13,9 +18,14 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.cyan),
       routes:{
-        Routes.home : (context) => Teachers(),
+        Routes.home : (context) => SelectionScreen(),
+        Routes.studentsOptions : (context) => StudentsOptions(),
+        Routes.students : (context) => Students(),
+        Routes.formStudents : (context) => FormStudents(),
+        Routes.teachers : (context) => Teachers(),
         Routes.formTeacher : (context) => FormTeacher(),
         Routes.descriptionTeacher : (context) => DescriptionTeacher(),
+        Routes.teachersOptions : (context) => TeachersOptions(),
       },);
   }
 }
