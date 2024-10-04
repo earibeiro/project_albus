@@ -1,23 +1,16 @@
 import 'package:albus/dominio/dto/dto_student.dart';
-import 'package:albus/routes.dart';
 import 'package:flutter/material.dart';
 
 class Students extends StatelessWidget {
   Future<List<DTOStudent>> save() async {
     return [
       DTOStudent(
-        name: 'Adonis Albuquerque', cpf: '444.444.444-44', email: 'adalb@example.com', password: '123456789'),
+        name: 'Adonis Albuquerque', cpf: '444.444.444-44', email: 'adalb@example.com', password: '123456789', phone: '99999-9999'),
       DTOStudent(
         name: 'Bianca Barbosa', cpf: '555.555.555-55', email: 'bibi@example.com', password: '987654321'),
       DTOStudent(
         name: 'Carlos Cunha', cpf: '666.666.666-66', email: 'cacu@example.com', password: 'abcdefgh'),
     ];
-  }
-
-  Widget createButton(BuildContext context, String route, String label) {
-    return TextButton(
-      onPressed: () => Navigator.pushNamed(context, route), 
-      child: Text(label));
   }
 
   @override
@@ -44,7 +37,13 @@ class Students extends StatelessWidget {
                 return ListTile(
                   leading: Icon(Icons.person),
                   title: Text(student.name),
-                  subtitle: Text(student.email ?? '')
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (student.email != null) Text('Email: ${student.email}'),
+                      if (student.phone != null) Text('Phone: ${student.phone}'),
+                    ],
+                  ),
                 );
               }
             );
