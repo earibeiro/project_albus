@@ -17,7 +17,7 @@ class Student {
 
   late IDAOStudent dao;
 
-  Student({required this.dto, required this.dao}) {
+  Student({required this.dao}) {
     id = dto.id;
     name = dto.name;
     valid_mail.Email(email);
@@ -25,13 +25,14 @@ class Student {
     valid_phone.Phone(phone);
   }
 
-  Future<void> add() async {
+  Future<DTOStudent> save(DTOStudent dtoStudent) async {
     dto = await dao.save(dto);
+    return dtoStudent;
   }
 
-  Future<void> remove() async {
+  /*Future<void> remove() async {
     await dao.remove(dto);
-  }
+  }*/
   
 
 }

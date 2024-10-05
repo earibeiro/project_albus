@@ -7,11 +7,17 @@ class AStudent {
   late Student student;
   IDAOStudent dao = DaoStudent();
 
-  AStudent({required DTOStudent dto}) {
-    student = Student(dto: dto, dao: dao);
+  AStudent() {
+    student = Student(dao: dao);
+    dao = DaoStudent();
   }
 
-  Future<void> save() async {
-    await student.add();
+  Future<DTOStudent> save(DTOStudent dtoStudent) async {
+    return await student.save(dtoStudent);
   }
+
+  /*void remove(dynamic id) async {
+    await student.remove(id);
+  }*/
+
 }
