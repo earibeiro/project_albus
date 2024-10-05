@@ -1,22 +1,10 @@
-import 'package:albus/app/database/supabase/supabase_connection.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:albus/dominio/dto/dto_student.dart';
-import 'package:albus/dominio/interface/i_dao_student.dart';
 
-class DAOStudentSupa implements IDAOStudent {
+class DAOStudentSupa {
   final SupabaseClient _client;
 
-  DAOStudentSupa() : _client = SupabaseConnection.client;
-
-  static DTOStudent fromJson(Map<String, dynamic> json) {
-    return DTOStudent(
-      name: json['name'],
-      email: json['email'],
-      phone: json['phone'],
-      cpf: json['cpf'],
-      password: json['password'],
-    );
-  }
+  DAOStudentSupa(this._client);
 
   Map<String, dynamic> toJson(DTOStudent student) {
     return {
@@ -28,26 +16,29 @@ class DAOStudentSupa implements IDAOStudent {
     };
   }
 
-  @override
   Future<DTOStudent> create(DTOStudent dtoStudent) async {
+    final json = toJson(dtoStudent);
+    print('Creating student with data: $json');
+
     final response = await _client
         .from('student')
-        .insert(toJson(dtoStudent))
+        .insert(json)
         .execute();
 
     if (response.error != null) {
+      print('Error response: ${response.error!.message}');
       throw Exception('Failed to create student: ${response.error!.message}');
     }
 
+    print('Response data: ${response.data}');
     return fromJson(response.data[0]);
   }
 
-  @override
-  Future<DTOStudent> read(DTOStudent dtoStudent) async {
+  Future<DTOStudent> read(String id) async {
     final response = await _client
         .from('student')
         .select()
-        .eq('id', dtoStudent.id)
+        .eq('id', id)
         .single()
         .execute();
 
@@ -58,11 +49,11 @@ class DAOStudentSupa implements IDAOStudent {
     return fromJson(response.data);
   }
 
-  @override
   Future<DTOStudent> update(DTOStudent dtoStudent) async {
+    final json = toJson(dtoStudent);
     final response = await _client
         .from('student')
-        .update(toJson(dtoStudent))
+        .update(json)
         .eq('id', dtoStudent.id)
         .execute();
 
@@ -73,7 +64,18 @@ class DAOStudentSupa implements IDAOStudent {
     return fromJson(response.data[0]);
   }
 
-  @override
+  Future<void> remove(String id) async {
+    final response = await _client
+        .from('student')
+        .delete()
+        .eq('id', id)
+        .execute();
+
+    if (response.error != null) {
+      throw Exception('Failed to delete student: ${response.error!.message}');
+    }
+  }
+
   Future<List<DTOStudent>> list() async {
     final response = await _client
         .from('student')
@@ -84,35 +86,17 @@ class DAOStudentSupa implements IDAOStudent {
       throw Exception('Failed to list students: ${response.error!.message}');
     }
 
-    final data = response.data as List<dynamic>;
-
-    return data.map((e) => fromJson(e)).toList();
+    return (response.data as List).map((json) => fromJson(json)).toList();
   }
 
-  @override
-  Future<DTOStudent> save(DTOStudent dtoStudent) async {
-    final response = await _client
-        .from('student')
-        .insert(toJson(dtoStudent))
-        .execute();
-
-    if (response.error != null) {
-      throw Exception('Failed to save student: ${response.error!.message}');
-    }
-
-    return fromJson(response.data[0]);
-  }
-
-  @override
-  Future<void> remove(DTOStudent dtoStudent) async {
-    final response = await _client
-        .from('student')
-        .delete()
-        .eq('id', dtoStudent.id)
-        .execute();
-
-    if (response.error != null) {
-      throw Exception('Failed to remove student: ${response.error!.message}');
-    }
+  DTOStudent fromJson(Map<String, dynamic> json) {
+    return DTOStudent(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      phone: json['phone'],
+      cpf: json['cpf'],
+      password: json['password'],
+    );
   }
 }

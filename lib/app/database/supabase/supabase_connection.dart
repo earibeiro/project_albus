@@ -4,7 +4,7 @@ class SupabaseConnection {
   static late SupabaseClient _client;
   static bool _isConnectionCreated = false;
 
-  static Future<SupabaseClient> open() async {
+  static Future<void> open() async {
     if (!_isConnectionCreated) {
       _client = SupabaseClient(
         'https://wnkawcbqwerdbnztmbqq.supabase.co',
@@ -12,22 +12,26 @@ class SupabaseConnection {
       );
       _isConnectionCreated = true;
     }
+  }
+
+  static SupabaseClient get client {
+    if (!_isConnectionCreated) {
+      throw Exception('Supabase client is not initialized. Call open() first.');
+    }
     return _client;
   }
 
-  static SupabaseClient get client => _client;
-
   static Future<void> insertData(String table, Map<String, dynamic> data) async {
-    final client = await open();
-    final response = await client.from(table).insert(data).execute();
+    await open();
+    final response = await _client.from(table).insert(data).execute();
     if (response.error != null) {
       throw Exception('Failed to insert data: ${response.error!.message}');
     }
   }
 
   static Future<List<dynamic>> getData(String table) async {
-    final client = await open();
-    final response = await client.from(table).select().execute();
+    await open();
+    final response = await _client.from(table).select().execute();
     if (response.error != null) {
       throw Exception('Failed to retrieve data: ${response.error!.message}');
     }
@@ -35,8 +39,8 @@ class SupabaseConnection {
   }
 
   static Future<void> testConnection() async {
-    final client = await open();
-    final response = await client.from('teacher').select().execute();
+    await open();
+    final response = await _client.from('teacher').select().execute();
     if (response.error != null) {
       throw Exception('Failed to connect: ${response.error!.message}');
     }
