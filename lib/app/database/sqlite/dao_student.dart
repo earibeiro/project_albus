@@ -17,8 +17,42 @@ class DaoStudent implements  IDAOStudent {
   }
 
   @override
-  Future<void> remove(DTOStudent dto) async {
-    final db = await Connection.open();
-    await db.delete('student', where: 'id = ?', whereArgs: [dto.id]);
+  void remove(DTOStudent dto) async {
+    _db = await Connection.open();
+    int id = await _db.rawDelete(
+      '''DELETE FROM student WHERE id = ?''', [dto.id]);
+    dto.id = id;
+  }
+
+  @override
+  Future<DTOStudent> update(DTOStudent dto) async {
+    _db = await Connection.open();
+    int id = await _db.rawUpdate(
+      '''UPDATE student SET name = ?, password = ?, email = ?, phone = ?, cpf = ? WHERE id = ?''', 
+      [dto.name, dto.password, dto.email, dto.phone, dto.cpf, dto.id]);
+    dto.id = id;
+    return dto;
+  }
+
+  @override
+  Future<DTOStudent> read(DTOStudent dto) async {
+    _db = await Connection.open();
+    List<Map<String, dynamic>> maps = await _db.rawQuery('SELECT * FROM students WHERE id = ?', [dto.id]);
+
+    if (maps.isNotEmpty) {
+      return DTOStudent.fromJson(maps.first);
+    } else {
+      throw Exception('Student not found');
+    }
+  }
+
+  @override
+  Future<List<DTOStudent>> list() async {
+    _db = await Connection.open();
+    List<Map<String, dynamic>> maps = await _db.rawQuery('SELECT * FROM students');
+    
+    return List.generate(maps.length, (i) {
+      return DTOStudent.fromJson(maps[i]);
+    });
   }
 }

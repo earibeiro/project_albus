@@ -14,4 +14,9 @@ class ATeacher {
   Future<void> save() async {
     await teacher.add();
   }
+
+  Future<void> remove() async {
+    await teacher.remove();
+  }
+
 }
