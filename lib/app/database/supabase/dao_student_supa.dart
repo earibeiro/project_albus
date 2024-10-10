@@ -27,6 +27,9 @@ class DAOStudentSupa {
 
     if (response.error != null) {
       print('Error response: ${response.error!.message}');
+      print('Error details: ${response.error!.details}');
+      print('Error hint: ${response.error!.hint}');
+      print('Error code: ${response.error!.code}');
       throw Exception('Failed to create student: ${response.error!.message}');
     }
 

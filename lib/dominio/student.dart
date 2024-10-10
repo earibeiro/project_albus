@@ -18,21 +18,38 @@ class Student {
   late IDAOStudent dao;
 
   Student({required this.dao}) {
+    
+  }
+
+  validate({required DTOStudent dto}) {
     id = dto.id;
     name = dto.name;
-    valid_mail.Email(email);
-    valid_pass.Password(password);
-    valid_phone.Phone(phone);
+    cpf = dto.cpf;
+    email = dto.email;
+    password = dto.password;
+    phone = dto.phone!;
   }
 
   Future<DTOStudent> save(DTOStudent dtoStudent) async {
-    dto = await dao.save(dto);
+    validate(dto: dtoStudent);
+    return await dao.save(dtoStudent);
+  }
+
+  Future<void> remove(dynamic id) async {
+    await dao.remove(id);
+  }
+  
+  Future<DTOStudent> update(DTOStudent dtoStudent) async {
+    dto = await dao.update(dtoStudent);
     return dtoStudent;
   }
 
-  /*Future<void> remove() async {
-    await dao.remove(dto);
-  }*/
-  
+  Future<DTOStudent> read(DTOStudent dtoStudent) async {
+    dto = await dao.read(dtoStudent);
+    return dtoStudent;
+  }
 
+  Future<List<DTOStudent>> list() async {
+    return await dao.list();
+  }
 }

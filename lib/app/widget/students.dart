@@ -1,16 +1,13 @@
+import 'package:albus/app/application/a_student.dart';
 import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:flutter/material.dart';
 
 class Students extends StatelessWidget {
-  Future<List<DTOStudent>> save() async {
-    return [
-      DTOStudent(
-        name: 'Adonis Albuquerque', cpf: '444.444.444-44', email: 'adalb@example.com', password: '123456789', phone: '99999-9999'),
-      DTOStudent(
-        name: 'Bianca Barbosa', cpf: '555.555.555-55', email: 'bibi@example.com', password: '987654321'),
-      DTOStudent(
-        name: 'Carlos Cunha', cpf: '666.666.666-66', email: 'cacu@example.com', password: 'abcdefgh'),
-    ];
+  Future<List<DTOStudent>> list() async {
+
+        AStudent aStudent = AStudent();
+
+        return await aStudent.list();
   }
 
   @override
@@ -20,7 +17,7 @@ class Students extends StatelessWidget {
         title: Text('Students'),
       ),
       body: FutureBuilder<List<DTOStudent>>(
-        future: save(),
+        future: list(),
         builder: (BuildContext context, AsyncSnapshot<List<DTOStudent>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
