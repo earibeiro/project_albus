@@ -16,8 +16,20 @@ class AStudent {
     return await student.save(dtoStudent);
   }
 
-  /*void remove(dynamic id) async {
+  void remove(dynamic id) async {
     await student.remove(id);
-  }*/
+  }
+
+  Future <DTOStudent> update(DTOStudent dtoStudent) async {
+    return await student.update(dtoStudent);
+  }
+
+  Future <DTOStudent> read(DTOStudent dtoStudent) async {
+    return await student.read(dtoStudent);
+  }
+
+  Future <List<DTOStudent>> list() async {
+    return await student.list();
+  }
 
 }
