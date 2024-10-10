@@ -1,4 +1,4 @@
-#Thu Oct 10 19:51:46 BRT 2024
+#Thu Oct 10 20:44:09 BRT 2024
 base.0=D\:\\01_Documentos\\02_Faculdade\\03_3oAno\\Projeto DDM 2o Trimestre\\albus\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\01_Documentos\\02_Faculdade\\03_3oAno\\Projeto DDM 2o Trimestre\\albus\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=D\:\\01_Documentos\\02_Faculdade\\03_3oAno\\Projeto DDM 2o Trimestre\\albus\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
