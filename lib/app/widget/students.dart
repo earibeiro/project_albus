@@ -2,6 +2,7 @@ import 'package:albus/app/application/a_student.dart';
 import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:flutter/material.dart';
 
+
 class Students extends StatelessWidget {
   Future<List<DTOStudent>> list() async {
 

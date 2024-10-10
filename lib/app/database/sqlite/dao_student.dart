@@ -9,7 +9,7 @@ class DaoStudent implements IDAOStudent {
   @override
   Future<DTOStudent> save(DTOStudent dto) async {
     _db = await Connection.open();
-    print('Inserting student: ${dto.name}, ${dto.password}, ${dto.email}, ${dto.phone}, ${dto.cpf}'); // Debug message
+    print('Inserting student: ${dto.name}, ${dto.password}, ${dto.email}, ${dto.phone}, ${dto.cpf}');
     int id = await _db.rawInsert(
       '''INSERT INTO student(name, password, email, phone, cpf) 
       VALUES (?, ?, ?, ?, ?)''', [dto.name, dto.password, dto.email, dto.phone, dto.cpf]);
