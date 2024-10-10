@@ -8,20 +8,21 @@ class Connection {
   static Future<Database> open() async {
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'database.db');
-      print('Database path: $path'); // Debug message
+      print('Database path: $path');
+
+      await deleteDatabase(path);
 
       _db = await openDatabase(
         path,
         version: 1,
         onCreate: (db, version) async {
           for (String table in createTables) {
-            print('Executing: $table'); // Debug message
+            print('Executing: $table');
             await db.execute(table);
           }
         },
       );
 
-      // Verify if the table was created
       bool tableExists = await _tableExists('student');
       if (tableExists) {
         print('Tabela student criada com sucesso.');
@@ -37,7 +38,7 @@ class Connection {
       "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
       [tableName]
     );
-    print('Table exists result: $result'); // Debug message
+    print('Table exists result: $result');
     return result.isNotEmpty;
   }
 }
