@@ -5,7 +5,7 @@ import 'package:albus/app/widget/studentsoptions.dart';
 import 'package:albus/app/widget/students.dart';
 import 'package:albus/app/widget/formstudents.dart';
 import 'package:albus/app/widget/teachersoptions.dart';
-import 'package:albus/app/widget/formteacher.dart';
+import 'package:albus/app/widget/formteachers.dart';
 import 'package:albus/app/widget/descriptionteacher.dart';  
 import 'package:albus/app/widget/teachers.dart';
 
@@ -23,8 +23,7 @@ class MyApp extends StatelessWidget{
         Routes.students : (context) => Students(),
         Routes.formStudents : (context) => FormStudents(),
         Routes.teachers : (context) => Teachers(),
-        Routes.formTeacher : (context) => FormTeacher(),
-        Routes.descriptionTeacher : (context) => DescriptionTeacher(),
+        Routes.formTeacher : (context) => classFormTeachers(),
         Routes.teachersOptions : (context) => TeachersOptions(),
       },);
   }

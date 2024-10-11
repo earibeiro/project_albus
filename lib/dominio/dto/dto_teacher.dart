@@ -5,7 +5,15 @@ class DTOTeacher {
   late String email;
   late String? phone;
   late String cpf;
-  late String? photo;
+  late String password;
 
-  DTOTeacher({this.id, required this.name, this.description, required this.email, this.phone, required this.cpf, this.photo});
+  DTOTeacher({
+    this.id,
+    required this.name,
+    this.description,
+    required this.email,
+    this.phone,
+    required this.cpf,
+    required this.password,
+  });
 }
