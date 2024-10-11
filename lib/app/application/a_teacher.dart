@@ -7,16 +7,28 @@ class ATeacher {
   late Teacher teacher;
   IDAOTeacher dao = DaoTeacher();
 
-  ATeacher({required DTOTeacher dto}) {
-    teacher = Teacher(dto: dto, dao: dao);
+  ATeacher() {
+    teacher = Teacher(dao: dao);
+    dao =  DaoTeacher();
   }
 
-  Future<void> save() async {
-    await teacher.add();
+  Future<DTOTeacher> save(DTOTeacher dtoTeacher) async {
+    return await teacher.save(dtoTeacher);
   }
 
-  Future<void> remove() async {
-    await teacher.remove();
+  void remove(dynamic id) async {
+    await teacher.remove(id);
   }
 
+  Future <DTOTeacher> update(DTOTeacher dtoTeacher) async {
+    return await teacher.update(dtoTeacher);
+  }
+
+  Future <DTOTeacher> read(DTOTeacher dtoTeacher) async {
+    return await teacher.read(dtoTeacher);
+  }
+
+  Future <List<DTOTeacher>> list() async {
+    return await teacher.list();
+  }
 }

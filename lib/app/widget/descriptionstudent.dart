@@ -17,6 +17,9 @@ class DescriptionStudent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String obscuredPassword = '*' * password.length;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Detalhes do Aluno'),
@@ -34,7 +37,7 @@ class DescriptionStudent extends StatelessWidget {
             SizedBox(height: 8),
             Text('CPF: $cpf', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
-            Text('Senha: $password', style: TextStyle(fontSize: 18)),
+            Text('Senha: $obscuredPassword', style: TextStyle(fontSize: 18)),
           ],
         ),
       ),

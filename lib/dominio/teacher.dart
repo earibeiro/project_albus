@@ -4,54 +4,47 @@ import 'package:albus/dominio/cpf.dart' as validator;
 
 class Teacher {
   late dynamic id;
-  late String name;
-  late String? description;
-  late String cpf;
   late String email;
-  late String? phone;
-  late String? photo;
-
+  late String password;
+  late String name;
+  late String cpf;
+  late String phone;
+  
   late DTOTeacher dto;
+
   late IDAOTeacher dao;
 
-  Teacher({
-    required DTOTeacher dto,
-    required this.dao,
-  }) {
-    this.id = dto.id;
-    this.name = dto.name;
-    this.description = dto.description;
-    this.cpf = dto.cpf;
-    this.email = dto.email;
-    this.phone = dto.phone;
-    this.photo = dto.photo;
+  Teacher({required this.dao});
 
-    validator.CPF(cpf);
-    validateName();
-    validateEmail();
-    this.dto = dto;
+  validate({required DTOTeacher dto}) {
+    id = dto.id;
+    name = dto.name;
+    cpf = dto.cpf;
+    email = dto.email;
+    password = dto.password;
+    phone = dto.phone!;
   }
 
-  void validateName() {
-    if (name.isEmpty) throw Exception('Name cannot be empty!');
+  Future<DTOTeacher> save(DTOTeacher dtoTeacher) async {
+    validate(dto: dtoTeacher);
+    return await dao.save(dtoTeacher);
   }
 
-  void validateEmail() {
-    if (email.isEmpty) throw Exception('Email cannot be empty!');
+  Future<void> remove(dynamic id) async {
+    await dao.remove(id);
+  }
+  
+  Future<DTOTeacher> update(DTOTeacher dtoTeacher) async {
+    dto = await dao.update(dtoTeacher);
+    return dtoTeacher;
   }
 
-  void _isValidEmail() {
-    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-    if (!emailRegex.hasMatch(email)) {
-      throw Exception('Invalid email');
-    }
+  Future<DTOTeacher> read(DTOTeacher dtoTeacher) async {
+    dto = await dao.read(dtoTeacher);
+    return dtoTeacher;
   }
 
-  Future<DTOTeacher> add() async {
-    return await dao.save(dto);
-  }
-
-  Future<void> remove() async {
-    await dao.remove(dto);
+  Future<List<DTOTeacher>> list() async {
+    return await dao.list();
   }
 }
