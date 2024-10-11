@@ -68,7 +68,7 @@ class Teachers extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => classFormTeachers()),
           );
-          // Recarregar a lista de professores após adicionar um novo professor
+
           (context as Element).reassemble();
         },
         child: Icon(Icons.add),
