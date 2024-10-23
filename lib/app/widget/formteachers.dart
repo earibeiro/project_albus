@@ -1,6 +1,6 @@
-import 'package:albus/app/database/sqlite/dao_teacher.dart';
-import 'package:albus/dominio/dto/dto_teacher.dart';
 import 'package:flutter/material.dart';
+import 'package:albus/dominio/dto/dto_teacher.dart';
+import 'package:albus/app/application/a_teacher.dart';
 
 class classFormTeachers extends StatefulWidget {
   @override
@@ -35,14 +35,13 @@ class _classFormTeachersState extends State<classFormTeachers> {
         cpf: _cpfController.text,
       );
 
-      final dao = DaoTeacher();
-      await dao.save(teacher);
+      ATeacher aTeacher = ATeacher();
+      await aTeacher.save(teacher);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Professor salvo com sucesso!')),
       );
 
-      // Limpar os campos do formulário
       _nameController.clear();
       _passwordController.clear();
       _emailController.clear();

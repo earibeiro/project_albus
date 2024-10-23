@@ -20,17 +20,15 @@ void main() {
       },
     );
 
-    // Initialize Supabase
     await Supabase.initialize(
       url: 'https://wnkawcbqwerdbnztmbqq.supabase.co',
       anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indua2F3Y2Jxd2VyZGJuenRtYnFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjc2NTEyOTcsImV4cCI6MjA0MzIyNzI5N30.bUDD-ImOLNvQCkBL7Zc3v3LRGossiSh4e5mDdoqsl48',
     );
 
-    await SupabaseConnection.open(); // Inicializa o cliente Supabase
+    await SupabaseConnection.open();
     client = SupabaseConnection.client;
     daoStudentSupa = DAOStudentSupa(client);
 
-    // Configuração de segurança da linha
     await client.rpc('set_config', params: {'key': 'row_security', 'value': 'on'}).execute();
   });
 

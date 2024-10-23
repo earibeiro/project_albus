@@ -11,7 +11,6 @@ void main() {
     databaseFactory = databaseFactoryFfi;
     db = await Connection.open();
 
-    // Verificar se a tabela existe e criar se não existir
     try {
       var result = await db.rawQuery(
           "SELECT name FROM sqlite_master WHERE type='table' AND name='teacher'");
@@ -33,7 +32,7 @@ void main() {
   group('Testes de conexão', () {
     test('teste script create table', () async {
       var list = await db.rawQuery('SELECT * FROM teacher');
-      expect(list.length, 0); // Ajustado para 0, pois não há registros iniciais
+      expect(list.length, 0);
     });
 
     test('teste de inserção', () async {

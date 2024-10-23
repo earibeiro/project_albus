@@ -10,8 +10,8 @@ class DaoTeacher implements IDAOTeacher {
   Future<DTOTeacher> save(DTOTeacher dto) async {
     _db = await Connection.open();
     int id = await _db.rawInsert(
-      '''INSERT INTO teacher(name, description, email, phone, cpf, password) 
-      VALUES (?, ?, ?, ?, ?, ?)''', [dto.name, dto.description, dto.email, dto.phone, dto.cpf, dto.password]);
+      '''INSERT INTO teacher(name, email, phone, cpf, password) 
+      VALUES (?, ?, ?, ?, ?)''', [dto.name, dto.email, dto.phone, dto.cpf, dto.password]);
     dto.id = id;
     return dto;
   }
@@ -29,7 +29,6 @@ class DaoTeacher implements IDAOTeacher {
       'teacher',
       {
         'name': dto.name,
-        'description': dto.description,
         'email': dto.email,
         'phone': dto.phone,
         'cpf': dto.cpf,
@@ -49,7 +48,6 @@ class DaoTeacher implements IDAOTeacher {
       return DTOTeacher(
         id: result.first['id'],
         name: result.first['name'],
-        description: result.first['description'],
         email: result.first['email'],
         phone: result.first['phone'],
         cpf: result.first['cpf'],
@@ -67,7 +65,6 @@ class DaoTeacher implements IDAOTeacher {
     return result.map((data) => DTOTeacher(
       id: data['id'],
       name: data['name'],
-      description: data['description'],
       email: data['email'],
       phone: data['phone'],
       cpf: data['cpf'],
