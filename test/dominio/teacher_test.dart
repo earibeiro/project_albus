@@ -10,8 +10,39 @@ class DAOTeacher implements IDAOTeacher {
   }
 
   @override
-  Future<void> remove(DTOTeacher dto) async {
+  Future<void> remove(dynamic id) async {
 
+  }
+
+  @override
+  Future<DTOTeacher> update(DTOTeacher dto) async {
+    return dto;
+  }
+
+  @override
+  Future<DTOTeacher> read(dynamic id) async {
+    return DTOTeacher(
+      id: id,
+      name: 'João das Neves',
+      email: 'joaodn@example.com',
+      phone: '994548786',
+      cpf: '881.455.540-04',
+      password: 'password123',
+    );
+  }
+
+  @override
+  Future<List<DTOTeacher>> list() async {
+    return [
+      DTOTeacher(
+        id: 1,
+        name: 'João das Neves',
+        email: 'joaodn@example.com',
+        phone: '994548786',
+        cpf: '881.455.540-04',
+        password: 'password123',
+      ),
+    ];
   }
 }
 
@@ -19,21 +50,19 @@ void main() {
   var dto = DTOTeacher(
     id: 1,
     name: 'João das Neves',
-    description: 'Professor de matemática',
     cpf: '881.455.540-04',
     email: 'joaodn@example.com',
     phone: '994548786',
-    photo: 'photo_url',
+    password: 'password123',
   );
 
   var dtoNameEmpty = DTOTeacher(
     id: 2,
     name: '',
-    description: 'Professor de matemática',
     cpf: '881.455.540-04',
     email: 'joaodn@example.com',
     phone: '1234567890',
-    photo: 'photo_url',
+    password: 'password123',
   );
 
   var dao = DAOTeacher();
@@ -59,11 +88,10 @@ void main() {
         var dtoEmailEmpty = DTOTeacher(
           id: 3,
           name: 'João das Neves',
-          description: 'Professor de matemática',
           cpf: '881.455.540-04',
           email: '',
           phone: '1234567890',
-          photo: 'photo_url',
+          password: 'password123',
         );
         expect(() => Teacher(dto: dtoEmailEmpty, dao: dao).validateEmail(), throwsException);
       });
@@ -78,11 +106,10 @@ void main() {
         var dtoInvalidCpf = DTOTeacher(
           id: 4,
           name: 'João das Neves',
-          description: 'Professor de matemática',
           cpf: '123.456.789-00',
           email: 'joaodn@example.com',
           phone: '1234567890',
-          photo: 'photo_url',
+          password: 'password123',
         );
         expect(() => Teacher(dto: dtoInvalidCpf, dao: dao), throwsException);
       });
@@ -90,11 +117,11 @@ void main() {
 
     group('Teste para operações no banco de dados', () {
       test('Entidade Teacher - teste de operação de salvar', () async {
-        expect(() => teacher.add(), returnsNormally);
+        expect(() => teacher.save(dto), returnsNormally);
       });
 
       test('Entidade Teacher - teste de operação de remover', () async {
-        expect(() => teacher.remove(), returnsNormally);
+        expect(() => teacher.remove(dto.id), returnsNormally);
       });
     });
   });

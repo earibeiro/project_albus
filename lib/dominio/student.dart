@@ -17,9 +17,7 @@ class Student {
 
   late IDAOStudent dao;
 
-  Student({required this.dao}) {
-    
-  }
+  Student({required this.dao});
 
   validate({required DTOStudent dto}) {
     id = dto.id;
