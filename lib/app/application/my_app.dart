@@ -6,7 +6,7 @@ import 'package:albus/app/widget/students.dart';
 import 'package:albus/app/widget/formstudents.dart';
 import 'package:albus/app/widget/teachersoptions.dart';
 import 'package:albus/app/widget/formteachers.dart';
-import 'package:albus/app/widget/descriptionteacher.dart';  
+
 import 'package:albus/app/widget/teachers.dart';
 
 class MyApp extends StatelessWidget{

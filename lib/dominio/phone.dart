@@ -7,8 +7,8 @@ class Phone {
     }
   }
 
-  bool _isValidPassword () {
-    final passRegex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
-    return passRegex.hasMatch(number);
+  bool _isValidPhone () {
+    final phoneRegex = RegExp(r'^(\d{2}) \d{5}-\d{4}$');
+    return phoneRegex.hasMatch(number);
   }
 }
