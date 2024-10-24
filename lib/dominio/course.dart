@@ -24,42 +24,42 @@ class Course {
     validateName();
     validateDuration();
     validatePrice();
+  }
 
-    void validateName() {
-      if (name.isEmpty) throw Exception('O nome não pode estar vazio!');
-    }
+  void validateName() {
+    if (name.isEmpty) throw Exception('O nome não pode estar vazio!');
+  }
 
-    void validateDuration() {
-      if (duration <= 0) throw Exception('A duração deve ser maior que zero!');
-    }
+  void validateDuration() {
+    if (duration <= 0) throw Exception('A duração deve ser maior que zero!');
+  }
 
-    void validatePrice() {
-      if (!isFree && price <=0) throw Exception('O preço deve ser maior que zero para cursos pagos!');
-    }
+  void validatePrice() {
+    if (!isFree && price <= 0) throw Exception('O preço deve ser maior que zero para cursos pagos!');
+  }
 
-    Future<DTOCourse> save(DTOCourse dtoCourse) async {
-      validateName();
-      validateDuration();
-      validatePrice();
-      return await dao.save(dtoCourse);
-    }
+  Future<DTOCourse> save(DTOCourse dtoCourse) async {
+    validateName();
+    validateDuration();
+    validatePrice();
+    return await dao.save(dtoCourse);
+  }
 
-    Future<void> remove(dynamic id) async {
+  Future<void> remove(dynamic id) async {
     await dao.remove(id);
-    }
+  }
 
-    Future<DTOCourse> update(DTOCourse dtoCourse) async {
-      dto = await dao.update(dtoCourse);
-      return dtoCourse;
-    }
+  Future<DTOCourse> update(DTOCourse dtoCourse) async {
+    dto = await dao.update(dtoCourse);
+    return dtoCourse;
+  }
 
-    Future<DTOCourse> read(dynamic id) async {
-      dto = await dao.read(id);
-      return dto;
-    }
+  Future<DTOCourse> read(dynamic id) async {
+    dto = await dao.read(id);
+    return dto;
+  }
 
-    Future<List<DTOCourse>> list() async {
-      return await dao.list();
-    }
+  Future<List<DTOCourse>> list() async {
+    return await dao.list();
   }
 }

@@ -41,4 +41,18 @@ class Connection {
     print('Table exists result: $result');
     return result.isNotEmpty;
   }
+
+  static Future<void> close() async {
+    if(_db != null){
+      await _db!.close();
+      _db = null;
+    }
+  }
+
+  static Database get db {
+    if (_db == null) {
+      throw Exception('O banco de dados não foi inicializado');
+    }
+    return _db!;
+  }
 }
