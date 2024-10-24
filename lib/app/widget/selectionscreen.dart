@@ -1,5 +1,5 @@
-import 'package:albus/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:albus/routes.dart';
 
 class SelectionScreen extends StatelessWidget {
   const SelectionScreen({super.key});
@@ -21,6 +21,7 @@ class SelectionScreen extends StatelessWidget {
         children: [
           createButton(context, Routes.studentsOptions, 'Students Options'),
           createButton(context, Routes.teachersOptions, 'Teachers Options'),
+          createButton(context, Routes.courseOptions, 'Course Options'),
         ],
       ),
     );

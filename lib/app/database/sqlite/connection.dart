@@ -10,7 +10,7 @@ class Connection {
       var path = join(await getDatabasesPath(), 'database.db');
       print('Database path: $path');
 
-      //await deleteDatabase(path);
+      await deleteDatabase(path);
 
       _db = await openDatabase(
         path,

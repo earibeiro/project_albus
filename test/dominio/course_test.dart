@@ -7,12 +7,10 @@ import 'package:albus/app/database/sqlite/connection.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
-  // Configura o sqflite_common_ffi para testes
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
 
   setUpAll(() async {
-    // Configura o banco de dados para os testes
     await Connection.open();
     await Connection.db.execute('''
       CREATE TABLE IF NOT EXISTS course (
@@ -26,7 +24,6 @@ void main() {
   });
 
   tearDownAll(() async {
-    // Limpa o banco de dados após os testes
     await Connection.db.execute('DROP TABLE IF EXISTS course');
     await Connection.close();
   });

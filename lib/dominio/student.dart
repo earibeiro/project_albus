@@ -1,50 +1,73 @@
 import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:albus/dominio/interface/i_dao_student.dart';
-import 'package:albus/dominio/email.dart' as valid_mail;
-import 'package:albus/dominio/password.dart' as valid_pass;
-import 'package:albus/dominio/phone.dart' as valid_phone;
-
+import 'package:albus/dominio/name.dart';
+import 'package:albus/dominio/email.dart';
+import 'package:albus/dominio/phone.dart';
+import 'package:albus/dominio/cpf.dart';
+import 'package:albus/dominio/password.dart';
 
 class Student {
   late dynamic id;
-  late String email;
-  late String password;
   late String name;
-  late String cpf;
+  late String email;
   late String phone;
-  
-  late DTOStudent dto;
+  late String cpf;
+  late String password;
 
+  late DTOStudent dto;
   late IDAOStudent dao;
 
-  Student({required this.dao});
+  Student({
+    required this.dao,
+  });
 
-  validate({required DTOStudent dto}) {
-    id = dto.id;
-    name = dto.name;
-    cpf = dto.cpf;
-    email = dto.email;
-    password = dto.password;
-    phone = dto.phone!;
+  void validateName(DTOStudent dto) {
+    Name(dto.name);
+  }
+
+  void validateEmail(DTOStudent dto) {
+    Email(dto.email);
+  }
+
+  void validatePhone(DTOStudent dto) {
+    if (dto.phone == null) {
+      throw ArgumentError('Phone cannot be null');
+    }
+    Phone(dto.phone!);
+  }
+
+  void validateCPF(DTOStudent dto) {
+    CPF(dto.cpf);
+  }
+
+  void validatePassword(DTOStudent dto) {
+    Password(dto.password);
   }
 
   Future<DTOStudent> save(DTOStudent dtoStudent) async {
-    validate(dto: dtoStudent);
+    validateName(dtoStudent);
+    validateEmail(dtoStudent);
+    validatePhone(dtoStudent);
+    validateCPF(dtoStudent);
+    validatePassword(dtoStudent);
     return await dao.save(dtoStudent);
   }
 
   Future<void> remove(dynamic id) async {
     await dao.remove(id);
   }
-  
+
   Future<DTOStudent> update(DTOStudent dtoStudent) async {
-    dto = await dao.update(dtoStudent);
-    return dtoStudent;
+    validateName(dtoStudent);
+    validateEmail(dtoStudent);
+    validatePhone(dtoStudent);
+    validateCPF(dtoStudent);
+    validatePassword(dtoStudent);
+    return await dao.update(dtoStudent);
   }
 
-  Future<DTOStudent> read(DTOStudent dtoStudent) async {
-    dto = await dao.read(dtoStudent);
-    return dtoStudent;
+  Future<DTOStudent> read(dynamic id) async {
+    return await dao.read(id);
   }
 
   Future<List<DTOStudent>> list() async {
