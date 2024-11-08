@@ -1,24 +1,18 @@
+import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:flutter/material.dart';
 
+
 class DescriptionStudent extends StatelessWidget {
-  final String name;
-  final String email;
-  final String phone;
-  final String cpf;
-  final String password;
+  final DTOStudent;
 
   DescriptionStudent({
-    required this.name,
-    required this.email,
-    required this.phone,
-    required this.cpf,
-    required this.password,
+    required this.DTOStudent
   });
 
   @override
   Widget build(BuildContext context) {
 
-    String obscuredPassword = '*' * password.length;
+    String obscuredPassword = '*' * DTOStudent.password.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,13 +23,13 @@ class DescriptionStudent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nome: $name', style: TextStyle(fontSize: 18)),
+            Text('Nome: $DTOStudent.name', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
-            Text('Email: $email', style: TextStyle(fontSize: 18)),
+            Text('Email: $DTOStudent.email', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
-            Text('Telefone: $phone', style: TextStyle(fontSize: 18)),
+            Text('Telefone: $DTOStudent.phone', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
-            Text('CPF: $cpf', style: TextStyle(fontSize: 18)),
+            Text('CPF: $DTOStudent.cpf', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
             Text('Senha: $obscuredPassword', style: TextStyle(fontSize: 18)),
           ],

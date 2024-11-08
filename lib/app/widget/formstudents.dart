@@ -1,7 +1,6 @@
-import 'package:albus/app/application/a_student.dart';
-import 'package:albus/app/database/sqlite/dao_student.dart';
-import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:flutter/material.dart';
+import 'package:albus/dominio/dto/dto_student.dart';
+import 'package:albus/app/application/a_student.dart';
 
 class FormStudents extends StatefulWidget {
   @override
@@ -11,45 +10,53 @@ class FormStudents extends StatefulWidget {
 class _FormStudentsState extends State<FormStudents> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _cpfController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final DTOStudent? student = ModalRoute.of(context)!.settings.arguments as DTOStudent?;
+      if (student != null) {
+        _nameController.text = student.name ?? '';
+        _emailController.text = student.email ?? '';
+        _phoneController.text = student.phone ?? '';
+        _cpfController.text = student.cpf ?? '';
+        _passwordController.text = student.password ?? '';
+      }
+    });
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
-    _passwordController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
     _cpfController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
-  Future<void> _saveStudent() async {
+  void _saveStudent() async {
     if (_formKey.currentState!.validate()) {
-      final student = DTOStudent(
+      DTOStudent student = DTOStudent(
         name: _nameController.text,
-        password: _passwordController.text,
         email: _emailController.text,
         phone: _phoneController.text,
         cpf: _cpfController.text,
+        password: _passwordController.text,
       );
-
       AStudent aStudent = AStudent();
-      await aStudent.save(student);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Aluno salvo com sucesso!')),
-      );
-
-      _nameController.clear();
-      _passwordController.clear();
-      _emailController.clear();
-      _phoneController.clear();
-      _cpfController.clear();
-
-      Navigator.of(context).pop();
+      if (ModalRoute.of(context)!.settings.arguments == null) {
+        await aStudent.save(student);
+      } else {
+        student.id = (ModalRoute.of(context)!.settings.arguments as DTOStudent).id;
+        await aStudent.update(student);
+      }
+      Navigator.pop(context, true);
     }
   }
 
@@ -57,31 +64,20 @@ class _FormStudentsState extends State<FormStudents> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicionar Aluno'),
+        title: Text('Form Students'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
+          child: ListView(
+            children: <Widget>[
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(labelText: 'Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o nome';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: 'Senha'),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira a senha';
+                    return 'Please enter a name';
                   }
                   return null;
                 },
@@ -91,17 +87,17 @@ class _FormStudentsState extends State<FormStudents> {
                 decoration: InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o email';
+                    return 'Please enter an email';
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: _phoneController,
-                decoration: InputDecoration(labelText: 'Telefone'),
+                decoration: InputDecoration(labelText: 'Phone'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o telefone';
+                    return 'Please enter a phone number';
                   }
                   return null;
                 },
@@ -111,7 +107,18 @@ class _FormStudentsState extends State<FormStudents> {
                 decoration: InputDecoration(labelText: 'CPF'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o CPF';
+                    return 'Please enter a CPF';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a password';
                   }
                   return null;
                 },
@@ -119,7 +126,7 @@ class _FormStudentsState extends State<FormStudents> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _saveStudent,
-                child: Text('Salvar'),
+                child: Text('Save'),
               ),
             ],
           ),

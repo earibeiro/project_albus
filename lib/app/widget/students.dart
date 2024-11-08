@@ -3,16 +3,15 @@ import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:flutter/material.dart';
 import 'formstudents.dart';
 import 'descriptionstudent.dart';
+import 'package:albus/routes.dart';
 
 class Students extends StatelessWidget {
   Future<List<DTOStudent>> list() async {
-
-        AStudent aStudent = AStudent();
-
-        return await aStudent.list();
+    AStudent aStudent = AStudent();
+    return await aStudent.list();
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -37,16 +36,22 @@ class Students extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text(student.name ?? 'No Name'),
                   subtitle: Text(student.email ?? 'No Email'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.formStudents,
+                        arguments: student,
+                      );
+                    },
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DescriptionStudent(
-                          name: student.name ?? 'No Name',
-                          email: student.email ?? 'No Email',
-                          phone: student.phone ?? 'No Phone',
-                          cpf: student.cpf ?? 'No CPF',
-                          password: student.password ?? 'No Password',
+                          DTOStudent: student,
                         ),
                       ),
                     );
@@ -59,9 +64,9 @@ class Students extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Navigator.push(
+          await Navigator.pushNamed(
             context,
-            MaterialPageRoute(builder: (context) => FormStudents()),
+            Routes.formStudents,
           );
           (context as Element).reassemble();
         },
