@@ -16,7 +16,7 @@ class Routes {
   static const String teachersOptions = '/teachersOptions';
   static const String teachers = '/teachers';
   static const String descriptionTeacher = '/descriptionTeacher';
-  static const String formTeacher = '/formTeacher';
+  static const String formTeachers = '/formTeachers';
   static const String studentsOptions = '/studentsOptions';
   static const String students = '/students';
   static const String formStudents = '/formStudents';

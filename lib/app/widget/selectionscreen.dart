@@ -21,7 +21,6 @@ class SelectionScreen extends StatelessWidget {
         children: [
           createButton(context, Routes.studentsOptions, 'Students Options'),
           createButton(context, Routes.teachersOptions, 'Teachers Options'),
-          createButton(context, Routes.courseOptions, 'Course Options'),
         ],
       ),
     );

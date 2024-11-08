@@ -48,6 +48,8 @@ class _FormStudentsState extends State<FormStudents> {
       _emailController.clear();
       _phoneController.clear();
       _cpfController.clear();
+
+      Navigator.of(context).pop();
     }
   }
 
