@@ -10,10 +10,31 @@ class DTOTeacher {
   DTOTeacher({
     this.id,
     required this.name,
-    this.description,
     required this.email,
-    this.phone,
+    required this.phone,
     required this.cpf,
     required this.password,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'cpf': cpf,
+      'password': password,
+    };
+  }
+
+  static DTOTeacher fromMap(Map<String, dynamic> map) {
+    return DTOTeacher(
+      id: map['id'],
+      name: map['name'],
+      email: map['email'],
+      phone: map['phone'],
+      cpf: map['cpf'],
+      password: map['password'],
+    );
+  }
 }

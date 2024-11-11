@@ -1,9 +1,8 @@
-import 'package:albus/dominio/dto/dto_teacher.dart';
-import 'package:albus/routes.dart';
-import 'package:flutter/material.dart';
 import 'package:albus/app/application/a_teacher.dart';
-import 'package:albus/app/widget/formteachers.dart';
+import 'package:albus/dominio/dto/dto_teacher.dart';
+import 'package:flutter/material.dart';
 import 'descriptionteacher.dart';
+import 'package:albus/routes.dart';
 
 class Teachers extends StatelessWidget {
   Future<List<DTOTeacher>> list() async {
@@ -11,17 +10,11 @@ class Teachers extends StatelessWidget {
     return await aTeacher.list();
   }
 
-  Widget createButton(BuildContext context, String route, String label) {
-    return TextButton(
-      onPressed: () => Navigator.pushNamed(context, route), 
-      child: Text(label));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Professores'),
+        title: Text('Teachers'),
       ),
       body: FutureBuilder<List<DTOTeacher>>(
         future: list(),
@@ -42,16 +35,22 @@ class Teachers extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text(teacher.name ?? 'No Name'),
                   subtitle: Text(teacher.email ?? 'No Email'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.formTeachers,
+                        arguments: teacher,
+                      );
+                    },
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DescriptionTeacher(
-                          name: teacher.name ?? 'No Name',
-                          email: teacher.email ?? 'No Email',
-                          phone: teacher.phone ?? 'No Phone',
-                          cpf: teacher.cpf ?? 'No CPF',
-                          password: teacher.password ?? 'No Password',
+                          DTOTeacher: teacher,
                         ),
                       ),
                     );
@@ -64,11 +63,10 @@ class Teachers extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await Navigator.push(
+          await Navigator.pushNamed(
             context,
-            MaterialPageRoute(builder: (context) => classFormTeachers()),
+            Routes.formTeachers,
           );
-
           (context as Element).reassemble();
         },
         child: Icon(Icons.add),

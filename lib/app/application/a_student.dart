@@ -1,35 +1,36 @@
-import 'package:albus/app/database/sqlite/dao_student.dart';
-import 'package:albus/dominio/student.dart';
 import 'package:albus/dominio/dto/dto_student.dart';
-import 'package:albus/dominio/interface/i_dao_student.dart';
+import 'package:albus/app/database/sqlite/dao_student.dart';
 
 class AStudent {
-  late Student student;
-  IDAOStudent dao = DaoStudent();
+  final DaoStudent dao = DaoStudent();
 
-  AStudent() {
-    student = Student(dao: dao);
-    dao = DaoStudent();
+  Future<DTOStudent?> login(String email, String password) async {
+    List<DTOStudent> students = await dao.list();
+    for (DTOStudent student in students) {
+      if (student.email == email && student.password == password) {
+        return student;
+      }
+    }
+    return null;
   }
 
   Future<DTOStudent> save(DTOStudent dtoStudent) async {
-    return await student.save(dtoStudent);
+    return await dao.save(dtoStudent);
   }
 
-  void remove(dynamic id) async {
-    await student.remove(id);
+  Future<void> remove(dynamic id) async {
+    await dao.remove(id);
   }
 
-  Future <DTOStudent> update(DTOStudent dtoStudent) async {
-    return await student.update(dtoStudent);
+  Future<DTOStudent> update(DTOStudent dtoStudent) async {
+    return await dao.update(dtoStudent);
   }
 
-  Future <DTOStudent> read(DTOStudent dtoStudent) async {
-    return await student.read(dtoStudent);
+  Future<DTOStudent> read(dynamic id) async {
+    return await dao.read(id);
   }
 
-  Future <List<DTOStudent>> list() async {
-    return await student.list();
+  Future<List<DTOStudent>> list() async {
+    return await dao.list();
   }
-
 }

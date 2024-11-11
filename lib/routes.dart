@@ -10,6 +10,8 @@ import 'package:albus/app/widget/formstudents.dart';
 import 'package:albus/app/widget/teachers.dart';
 import 'package:albus/app/widget/formteachers.dart';
 import 'package:albus/app/widget/descriptionteacher.dart';
+import 'package:albus/app/widget/teacherloginscreen.dart';
+import 'package:albus/app/widget/studentloginscreen.dart';
 
 class Routes {
   static const String home = '/';
@@ -24,4 +26,6 @@ class Routes {
   static const String course = '/course';
   static const String formCourse = '/formCourse';
   static const String descriptionCourse = '/descriptionCourse';
+  static const String teacherLogin = '/teacherLogin';
+  static const String studentLogin = '/studentLogin';
 }

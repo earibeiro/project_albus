@@ -27,13 +27,7 @@ class DaoTeacher implements IDAOTeacher {
     final db = await Connection.open();
     await db.update(
       'teacher',
-      {
-        'name': dto.name,
-        'email': dto.email,
-        'phone': dto.phone,
-        'cpf': dto.cpf,
-        'password': dto.password,
-      },
+      dto.toMap(),
       where: 'id = ?',
       whereArgs: [dto.id],
     );
@@ -43,32 +37,26 @@ class DaoTeacher implements IDAOTeacher {
   @override
   Future<DTOTeacher> read(dynamic id) async {
     final db = await Connection.open();
-    List<Map<String, dynamic>> result = await db.query('teacher', where: 'id = ?', whereArgs: [id]);
-    if (result.isNotEmpty) {
-      return DTOTeacher(
-        id: result.first['id'],
-        name: result.first['name'],
-        email: result.first['email'],
-        phone: result.first['phone'],
-        cpf: result.first['cpf'],
-        password: result.first['password'],
-      );
+    final maps = await db.query(
+      'teacher',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return DTOTeacher.fromMap(maps.first);
     } else {
-      throw Exception('Teacher not found');
+      throw Exception('ID $id not found');
     }
   }
 
   @override
   Future<List<DTOTeacher>> list() async {
     final db = await Connection.open();
-    List<Map<String, dynamic>> result = await db.query('teacher');
-    return result.map((data) => DTOTeacher(
-      id: data['id'],
-      name: data['name'],
-      email: data['email'],
-      phone: data['phone'],
-      cpf: data['cpf'],
-      password: data['password'],
-    )).toList();
+    final List<Map<String, dynamic>> maps = await db.query('teacher');
+
+    return List.generate(maps.length, (i) {
+      return DTOTeacher.fromMap(maps[i]);
+    });
   }
 }
