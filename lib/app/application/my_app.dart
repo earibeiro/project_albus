@@ -12,8 +12,7 @@ import 'package:albus/app/widget/course.dart';
 import 'package:albus/app/widget/courseoptions.dart';
 import 'package:albus/app/widget/formcourse.dart';
 import 'package:albus/app/widget/descriptioncourse.dart';
-import 'package:albus/app/widget/teacherloginscreen.dart';
-import 'package:albus/app/widget/studentloginscreen.dart';
+import 'package:albus/app/widget/loginscreen.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
 
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.cyan),
       routes: {
-        Routes.home: (context) => SelectionScreen(),
+        Routes.home: (context) => LoginScreen(),
         Routes.studentsOptions: (context) => StudentsOptions(),
         Routes.students: (context) => Students(),
         Routes.formStudents: (context) => FormStudents(),
@@ -39,8 +38,7 @@ class MyApp extends StatelessWidget {
         Routes.formCourse: (context) => FormCourse(),
         Routes.descriptionCourse: (context) => DescriptionCourse(course: ModalRoute.of(context)!.settings.arguments as DTOCourse),
         Routes.descriptionTeacher: (context) => DescriptionTeacher(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
-        Routes.teacherLogin: (context) => TeacherLoginScreen(),
-        Routes.studentLogin: (context) => StudentLoginScreen(),
+        Routes.selectionScreen: (context) => SelectionScreen(),
       },
     );
   }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:albus/app/application/a_teacher.dart';
+import 'package:albus/app/application/a_student.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
+import 'package:albus/dominio/dto/dto_student.dart';
 import 'package:albus/routes.dart';
 
-class TeacherLoginScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _TeacherLoginScreenState createState() => _TeacherLoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -19,10 +21,17 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
       String password = _passwordController.text;
 
       ATeacher aTeacher = ATeacher();
-      DTOTeacher? teacher = await aTeacher.login(email, password);
+      AStudent aStudent = AStudent();
 
-      if (teacher != null) {
+      DTOTeacher? teacher = await aTeacher.login(email, password);
+      DTOStudent? student = await aStudent.login(email, password);
+
+      if (teacher != null && student != null) {
+        Navigator.pushReplacementNamed(context, Routes.home);
+      } else if (teacher != null) {
         Navigator.pushReplacementNamed(context, Routes.teachersOptions);
+      } else if (student != null) {
+        Navigator.pushReplacementNamed(context, Routes.studentsOptions);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Login falhou. Verifique suas credenciais.')),
@@ -31,11 +40,15 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
     }
   }
 
+  void _navigateToRegister() {
+    Navigator.pushNamed(context, Routes.formTeachers);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Teacher Login'),
+        title: Text('Login'),
       ),
       body: Center(
         child: Padding(
@@ -107,6 +120,11 @@ class _TeacherLoginScreenState extends State<TeacherLoginScreen> {
                 ElevatedButton(
                   onPressed: _login,
                   child: Text('Login'),
+                ),
+                SizedBox(height: 20),
+                TextButton(
+                  onPressed: _navigateToRegister,
+                  child: Text('Cadastre-se'),
                 ),
               ],
             ),

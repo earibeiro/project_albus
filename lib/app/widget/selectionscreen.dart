@@ -24,9 +24,9 @@ class SelectionScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            createButton(context, Routes.teacherLogin, 'Eu sou PROFESSOR'),
+            createButton(context, Routes.teacherLogin, 'Acessar como PROFESSOR'),
             SizedBox(height: 20),
-            createButton(context, Routes.studentLogin, 'Eu sou ALUNO'),
+            createButton(context, Routes.studentLogin, 'Acessar como ALUNO'),
           ],
         ),
       ),
