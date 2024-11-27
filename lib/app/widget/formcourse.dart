@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
-import 'package:albus/dominio/course.dart';
-import 'package:albus/app/database/sqlite/dao_course.dart';
+import 'package:albus/app/application/a_course.dart';
 
 class FormCourse extends StatefulWidget {
-  final Course? course;
-
-  FormCourse({this.course});
-
   @override
   _FormCourseState createState() => _FormCourseState();
 }
@@ -22,12 +17,15 @@ class _FormCourseState extends State<FormCourse> {
   @override
   void initState() {
     super.initState();
-    if (widget.course != null) {
-      _nameController.text = widget.course!.name;
-      _durationController.text = widget.course!.duration.toString();
-      _isFree = widget.course!.isFree;
-      _priceController.text = widget.course!.price.toString();
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final DTOCourse? course = ModalRoute.of(context)!.settings.arguments as DTOCourse?;
+      if (course != null) {
+        _nameController.text = course.name ?? '';
+        _durationController.text = course.duration.toString();
+        _isFree = course.isFree;
+        _priceController.text = course.price.toString();
+      }
+    });
   }
 
   @override
@@ -38,26 +36,22 @@ class _FormCourseState extends State<FormCourse> {
     super.dispose();
   }
 
-  void _saveCourse() {
+  void _saveCourse() async {
     if (_formKey.currentState!.validate()) {
-      final dtoCourse = DTOCourse(
+      DTOCourse course = DTOCourse(
         name: _nameController.text,
         duration: int.parse(_durationController.text),
         isFree: _isFree,
         price: _isFree ? 0.0 : double.parse(_priceController.text),
       );
-
-      final daoCourse = DaoCourse();
-      final course = Course(dto: dtoCourse, dao: daoCourse);
-
-      if (widget.course == null) {
-        course.save(dtoCourse);
+      ACourse aCourse = ACourse();
+      if (ModalRoute.of(context)!.settings.arguments == null) {
+        await aCourse.save(course);
       } else {
-        dtoCourse.id = widget.course!.id;
-        course.update(dtoCourse);
+        course.id = (ModalRoute.of(context)!.settings.arguments as DTOCourse).id;
+        await aCourse.update(course);
       }
-
-      Navigator.of(context).pop();
+      Navigator.pop(context, true);
     }
   }
 
@@ -65,7 +59,7 @@ class _FormCourseState extends State<FormCourse> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.course == null ? 'Novo Curso' : 'Editar Curso'),
+        title: Text('Form Course'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

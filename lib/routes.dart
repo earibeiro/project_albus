@@ -29,4 +29,6 @@ class Routes {
   static const String teacherLogin = '/teacherLogin';
   static const String studentLogin = '/studentLogin';
   static const String selectionScreen = '/selectionScreen';
+  static const String signup = '/signup';
+  static const String teacherProfile = '/teacherProfile';
 }

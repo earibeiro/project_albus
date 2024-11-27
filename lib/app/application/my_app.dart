@@ -1,3 +1,4 @@
+import 'package:albus/app/widget/signup.dart';
 import 'package:albus/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:albus/app/widget/selectionscreen.dart';
@@ -15,6 +16,7 @@ import 'package:albus/app/widget/descriptioncourse.dart';
 import 'package:albus/app/widget/loginscreen.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
+import 'package:albus/app/widget/teacherprofilescreen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -39,6 +41,8 @@ class MyApp extends StatelessWidget {
         Routes.descriptionCourse: (context) => DescriptionCourse(course: ModalRoute.of(context)!.settings.arguments as DTOCourse),
         Routes.descriptionTeacher: (context) => DescriptionTeacher(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
         Routes.selectionScreen: (context) => SelectionScreen(),
+        Routes.signup: (context) => SignupScreen(),
+        Routes.teacherProfile: (context) => TeacherProfileScreen(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher, teacher: null,),
       },
     );
   }

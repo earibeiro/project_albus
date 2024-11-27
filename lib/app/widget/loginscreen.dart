@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (teacher != null && student != null) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else if (teacher != null) {
-        Navigator.pushReplacementNamed(context, Routes.teachersOptions);
+        Navigator.pushReplacementNamed(context, Routes.teacherProfile, arguments: teacher);
       } else if (student != null) {
         Navigator.pushReplacementNamed(context, Routes.studentsOptions);
       } else {
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _navigateToRegister() {
-    Navigator.pushNamed(context, Routes.formTeachers);
+    Navigator.pushNamed(context, Routes.signup);
   }
 
   @override
