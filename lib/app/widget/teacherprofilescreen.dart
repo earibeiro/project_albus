@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:albus/app/application/a_teacher.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
 import 'package:albus/routes.dart';
+import 'courselistteacher.dart';
 
 class TeacherProfileScreen extends StatefulWidget {
   final DTOTeacher teacher;
 
-  TeacherProfileScreen({required this.teacher, required DTOTeacher DTOTeacher});
+  TeacherProfileScreen({required this.teacher});
 
   @override
   _TeacherProfileScreenState createState() => _TeacherProfileScreenState();
@@ -83,14 +84,14 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
               leading: Icon(Icons.book),
               title: Text('Meus Cursos'),
               onTap: () {
-                Navigator.pushNamed(context, Routes.teachersOptions);
+                Navigator.pushNamed(context, Routes.courseListTeacher);
               },
             ),
             ListTile(
               leading: Icon(Icons.assignment),
               title: Text('Atividades'),
               onTap: () {
-                // Adicionar navegação para a página de atividades
+                // Navegar para a página de atividades
               },
             ),
           ],

@@ -1,4 +1,4 @@
-import 'package:albus/app/widget/signup.dart';
+import 'package:albus/app/widget/dashboard.dart';
 import 'package:albus/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:albus/app/widget/selectionscreen.dart';
@@ -14,9 +14,12 @@ import 'package:albus/app/widget/courseoptions.dart';
 import 'package:albus/app/widget/formcourse.dart';
 import 'package:albus/app/widget/descriptioncourse.dart';
 import 'package:albus/app/widget/loginscreen.dart';
+import 'package:albus/app/widget/studentloginscreen.dart';
+import 'package:albus/app/widget/signup.dart';
+import 'package:albus/app/widget/teacherprofilescreen.dart';
+import 'package:albus/app/widget/courselistteacher.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
-import 'package:albus/app/widget/teacherprofilescreen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -40,9 +43,11 @@ class MyApp extends StatelessWidget {
         Routes.formCourse: (context) => FormCourse(),
         Routes.descriptionCourse: (context) => DescriptionCourse(course: ModalRoute.of(context)!.settings.arguments as DTOCourse),
         Routes.descriptionTeacher: (context) => DescriptionTeacher(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
-        Routes.selectionScreen: (context) => SelectionScreen(),
+        Routes.studentLogin: (context) => StudentLoginScreen(),
         Routes.signup: (context) => SignupScreen(),
-        Routes.teacherProfile: (context) => TeacherProfileScreen(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher, teacher: null,),
+        Routes.teacherProfile: (context) => TeacherProfileScreen(teacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher, ),
+        Routes.courseListTeacher: (context) => CourseListTeacher(),
+        Routes.dashboard: (context) => Dashboard(),
       },
     );
   }

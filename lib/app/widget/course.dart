@@ -25,14 +25,15 @@ class _CoursePageState extends State<CoursePage> {
     });
   }
 
-  void _navigateToForm([Course? course]) async {
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => FormCourse(course: course),
-      ),
-    );
-    _loadCourses();
-  }
+  void _navigateToForm([DTOCourse? course]) async {
+  await Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => FormCourse(),
+      settings: RouteSettings(arguments: course),
+    ),
+  );
+  _loadCourses();
+}
 
   void _deleteCourse(dynamic id) async {
     final daoCourse = DaoCourse();
@@ -73,7 +74,7 @@ class _CoursePageState extends State<CoursePage> {
                     icon: Icon(Icons.delete),
                     onPressed: () => _deleteCourse(course.id),
                   ),
-                  onTap: () => _navigateToForm(Course(dto: course, dao: DaoCourse())),
+                  onTap: () => _navigateToForm(course),
                 );
               },
             );

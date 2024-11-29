@@ -11,6 +11,10 @@ import 'package:albus/app/widget/teachers.dart';
 import 'package:albus/app/widget/formteachers.dart';
 import 'package:albus/app/widget/descriptionteacher.dart';
 import 'package:albus/app/widget/loginscreen.dart';
+import 'package:albus/app/widget/courselistteacher.dart';
+import 'package:albus/app/widget/signup.dart';
+import 'package:albus/app/widget/teacherprofilescreen.dart';
+import 'package:albus/app/widget/dashboard.dart';
 
 class Routes {
   static const String home = '/';
@@ -31,4 +35,6 @@ class Routes {
   static const String selectionScreen = '/selectionScreen';
   static const String signup = '/signup';
   static const String teacherProfile = '/teacherProfile';
+  static const String courseListTeacher = '/courseListTeacher';
+  static const String dashboard = '/dashboard';
 }

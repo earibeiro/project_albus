@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       DTOStudent? student = await aStudent.login(email, password);
 
       if (teacher != null && student != null) {
-        Navigator.pushReplacementNamed(context, Routes.home);
+        Navigator.pushReplacementNamed(context, Routes.selectionScreen);
       } else if (teacher != null) {
         Navigator.pushReplacementNamed(context, Routes.teacherProfile, arguments: teacher);
       } else if (student != null) {

@@ -4,20 +4,44 @@ import 'package:flutter/material.dart';
 import 'descriptionteacher.dart';
 import 'package:albus/routes.dart';
 
-class Teachers extends StatelessWidget {
-  Future<List<DTOTeacher>> list() async {
+class Teachers extends StatefulWidget {
+  @override
+  _TeachersState createState() => _TeachersState();
+}
+
+class _TeachersState extends State<Teachers> {
+  late Future<List<DTOTeacher>> _teachers;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTeachers();
+  }
+
+  void _loadTeachers() {
     ATeacher aTeacher = ATeacher();
-    return await aTeacher.list();
+    setState(() {
+      _teachers = aTeacher.list();
+    });
+  }
+
+  void _deleteTeacher(BuildContext context, dynamic id) async {
+    ATeacher aTeacher = ATeacher();
+    await aTeacher.remove(id);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Professor excluído com sucesso!')),
+    );
+    _loadTeachers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Teachers'),
+        title: Text('Professores'),
       ),
       body: FutureBuilder<List<DTOTeacher>>(
-        future: list(),
+        future: _teachers,
         builder: (BuildContext context, AsyncSnapshot<List<DTOTeacher>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -35,15 +59,24 @@ class Teachers extends StatelessWidget {
                   leading: Icon(Icons.person),
                   title: Text(teacher.name ?? 'No Name'),
                   subtitle: Text(teacher.email ?? 'No Email'),
-                  trailing: IconButton(
-                    icon: Icon(Icons.edit),
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        Routes.formTeachers,
-                        arguments: teacher,
-                      );
-                    },
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            Routes.formTeachers,
+                            arguments: teacher,
+                          );
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => _deleteTeacher(context, teacher.id),
+                      ),
+                    ],
                   ),
                   onTap: () {
                     Navigator.push(
@@ -67,7 +100,7 @@ class Teachers extends StatelessWidget {
             context,
             Routes.formTeachers,
           );
-          (context as Element).reassemble();
+          _loadTeachers();
         },
         child: Icon(Icons.add),
       ),
