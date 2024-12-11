@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
+import 'package:albus/routes.dart';
+import 'package:albus/dominio/dto/dto_teacher.dart';
 
 class Dashboard extends StatefulWidget {
+  final DTOTeacher teacher; // Adicionando o professor como argumento
+
+  Dashboard({required this.teacher});
+
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -19,15 +25,15 @@ class _DashboardState extends State<Dashboard> {
 
   void _loadData() {
     setState(() {
-      _courseCount = Future.value(10); 
-      _studentCount = Future.value(200);
+      _courseCount = Future.value(10); // Valor falso para a quantidade de cursos
+      _studentCount = Future.value(200); // Valor falso para a quantidade de alunos
       _courseWithMostStudents = Future.value(DTOCourse(
         id: 1,
         name: 'Curso de Flutter',
         duration: 40,
         isFree: false,
         price: 199.99,
-      )); 
+      )); // Valor falso para o curso com maior quantidade de alunos
     });
   }
 
@@ -36,6 +42,57 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Dashboard'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.cyan,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.add),
+              title: Text('Cadastrar Novo Curso'),
+              onTap: () {
+                Navigator.pushNamed(context, Routes.formCourse);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.book),
+              title: Text('Meus Cursos'),
+              onTap: () {
+                Navigator.pushNamed(context, Routes.courseListTeacher);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Perfil do Professor'),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.teacherProfile,
+                  arguments: widget.teacher, // Passando o professor real como argumento
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.assignment),
+              title: Text('Atividades'),
+              onTap: () {
+                // Navegar para a página de atividades
+              },
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

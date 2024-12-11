@@ -45,9 +45,9 @@ class MyApp extends StatelessWidget {
         Routes.descriptionTeacher: (context) => DescriptionTeacher(DTOTeacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
         Routes.studentLogin: (context) => StudentLoginScreen(),
         Routes.signup: (context) => SignupScreen(),
-        Routes.teacherProfile: (context) => TeacherProfileScreen(teacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher, ),
+        Routes.teacherProfile: (context) => TeacherProfileScreen(teacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
         Routes.courseListTeacher: (context) => CourseListTeacher(),
-        Routes.dashboard: (context) => Dashboard(),
+        Routes.dashboard: (context) => Dashboard(teacher: ModalRoute.of(context)!.settings.arguments as DTOTeacher),
       },
     );
   }

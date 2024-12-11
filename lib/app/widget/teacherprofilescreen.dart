@@ -51,11 +51,21 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
     }
   }
 
+  void _logout() {
+    Navigator.pushReplacementNamed(context, Routes.login);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Perfil do Professor'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: _logout,
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -85,6 +95,17 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
               title: Text('Meus Cursos'),
               onTap: () {
                 Navigator.pushNamed(context, Routes.courseListTeacher);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.dashboard),
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  Routes.dashboard,
+                  arguments: widget.teacher, // Passando o professor real como argumento
+                );
               },
             ),
             ListTile(
