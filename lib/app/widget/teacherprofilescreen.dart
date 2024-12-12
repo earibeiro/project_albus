@@ -104,7 +104,7 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
                 Navigator.pushNamed(
                   context,
                   Routes.dashboard,
-                  arguments: widget.teacher, // Passando o professor real como argumento
+                  arguments: widget.teacher,
                 );
               },
             ),
@@ -114,6 +114,11 @@ class _TeacherProfileScreenState extends State<TeacherProfileScreen> {
               onTap: () {
                 // Navegar para a página de atividades
               },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: _logout,
             ),
           ],
         ),

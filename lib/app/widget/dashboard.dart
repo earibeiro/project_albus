@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:albus/dominio/dto/dto_course.dart';
 import 'package:albus/routes.dart';
 import 'package:albus/dominio/dto/dto_teacher.dart';
+import 'package:albus/app/application/a_course.dart';
 
 class Dashboard extends StatefulWidget {
-  final DTOTeacher teacher; // Adicionando o professor como argumento
+  final DTOTeacher teacher;
 
   Dashboard({required this.teacher});
 
@@ -24,17 +25,22 @@ class _DashboardState extends State<Dashboard> {
   }
 
   void _loadData() {
+    ACourse aCourse = ACourse();
     setState(() {
-      _courseCount = Future.value(10); // Valor falso para a quantidade de cursos
-      _studentCount = Future.value(200); // Valor falso para a quantidade de alunos
+      _courseCount = aCourse.count();
+      _studentCount = Future.value(200);
       _courseWithMostStudents = Future.value(DTOCourse(
         id: 1,
         name: 'Curso de Flutter',
         duration: 40,
         isFree: false,
         price: 199.99,
-      )); // Valor falso para o curso com maior quantidade de alunos
+      ));
     });
+  }
+
+  void _logout() {
+    Navigator.pushReplacementNamed(context, Routes.login);
   }
 
   @override
@@ -80,7 +86,7 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.pushNamed(
                   context,
                   Routes.teacherProfile,
-                  arguments: widget.teacher, // Passando o professor real como argumento
+                  arguments: widget.teacher,
                 );
               },
             ),
@@ -90,6 +96,11 @@ class _DashboardState extends State<Dashboard> {
               onTap: () {
                 // Navegar para a página de atividades
               },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: _logout,
             ),
           ],
         ),

@@ -68,4 +68,10 @@ class DaoCourse implements IDAOCourse {
       price: data['price'],
     )).toList();
   }
+
+  @override
+  Future<int> count() async {
+    final db = await Connection.open();
+    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM course'))!;
+  }
 }

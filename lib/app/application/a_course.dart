@@ -24,4 +24,8 @@ class ACourse {
   Future<List<DTOCourse>> list() async {
     return await dao.list();
   }
+
+  Future<int> count() async{
+    return await dao.count();
+  }
 }
